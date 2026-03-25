@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de filmes</title>
+    <title>Encontre seu filme</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="topo">
-        <h1>Buscador de filmes</h1>
+        <h1>Encontre seu filme</h1>
 
         <div class="busca">
-            <input type="text" id="search" placeholder="Digite um filmes...">
+            <input type="text" id="search" placeholder="Digite um filme...">
             <button onclick="buscarFilmes()">Buscar</button>
             <button onclick="verFavoritos()" class="secundario">Filmes Favoritados</button>
         </div>
@@ -20,8 +20,8 @@
     <div id="filmes"></div>
 
     <div id="paginacao" style="display:none;">
-        <button onclick="paginaAnterior()">Anterior</button>
-        <button onclick="proximaPagina()">Próxima</button>
+        <button onclick="paginaAnterior()" class="pagina">Anterior</button>
+        <button onclick="proximaPagina()" class="pagina">Próxima</button>
     </div>
 
 

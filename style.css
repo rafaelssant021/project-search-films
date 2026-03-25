@@ -6,7 +6,7 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient( circle at top, #0f0f0f, #340404);
+    background: radial-gradient( circle at top, #000000, #1d0202);
     min-height: 100vh;
     color: white;
     text-align: center;
@@ -14,7 +14,7 @@ body{
 
 .topo{
     padding: 30px 20px;
-    background: linear-gradient(to bottom, #0f0f0f, transparent);
+    background: linear-gradient(to bottom, #000000, transparent);
     position: sticky;
     top: 0;
     backdrop-filter: blur(10px);
@@ -38,7 +38,7 @@ body{
     padding: 12px 15px;
     width: 260px;
     border-radius: 10px;
-    background: #1f1f1f;
+    background: #000000;
     border: 1px solid #333;
     color: white;
     outline: none;
@@ -52,13 +52,14 @@ body{
 
 .busca button{
     padding: 12px 16px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     font-weight: bold;
+    margin: 3px 5px;
     background: #e50914;
     color: white;
-    transition: 0.2s;
+    transition: transform 0.15s ease, background 0.2s;
 }
 
 .busca button:hover{
@@ -67,7 +68,8 @@ body{
 }
 
 .busca .secundario{
-    background: #2a2a2a;
+    background: #000000;
+    border: 1px solid #333;
     color: #ddd;
 }
 
@@ -75,20 +77,27 @@ body{
     background: #3a3a3a;
 }
 
-input::placeholder{
+.busca input::placeholder{
     color: #888;
 }
 
-button{
-    background: #e50914;
+.pagina{
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #000000;
     color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 14px;
-    cursor: pointer;
-    margin: 10px 5px;
     font-weight: bold;
-    transition: transform 0.15s ease, background 0.2s;
+    margin: 3px 12px;
+    cursor: pointer;
+}
+
+#btn-favorito{
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #filmes{
@@ -102,9 +111,10 @@ button{
 }
 
 .filme{
-    background: #111;
+    background: #000000;
     width: 200px;
     border-radius: 12px;
+    border: 1px solid #333;
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -143,6 +153,7 @@ button{
     font-size: 13px;
     margin: 0 10px 10px;
     color: #bbb;
+    line-height: 1.4;
 }
 
 .modal{
@@ -160,7 +171,7 @@ button{
 }
 
 .modal-content{
-    background: #111;
+    background: #000000;
     padding: 20px;
     border-radius: 12px;
     width: 400px;
