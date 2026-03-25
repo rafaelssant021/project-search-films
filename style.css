@@ -6,15 +6,17 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient( circle at top, #000000, #1d0202);
+    background: linear-gradient( -45deg, #000000, #200707, #000000, #220101);
+    background-size: 400% 400%;
     min-height: 100vh;
     color: white;
     text-align: center;
+    animation: gradientMove 10s ease infinite;
 }
 
 .topo{
     padding: 30px 20px;
-    background: linear-gradient(to bottom, #000000, transparent);
+
     position: sticky;
     top: 0;
     backdrop-filter: blur(10px);
@@ -262,4 +264,16 @@ body{
     max-height: 85vh;
     padding: 15px;
     }
+}
+
+@keyframes gradientMove{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
