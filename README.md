@@ -15,6 +15,15 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 
 ---
 
+## Interface
+- Cards dinâmicos para cada filme
+- Modal para exibir detalhes completos
+- Sistema de favoritos separado
+- Scroll customizado
+- Design moderno e organizado
+
+---
+
 ## Tecnologias utilizadas
 
 - HTML5  
@@ -23,5 +32,16 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 - API de filmes (TMDB)  
 
 ---
+
+## Aprendizados
+- Consumo de APIs REST
+- Manipulação do DOM
+- Uso de async/await e fetch
+- Criação de modais dinâmicos
+- Organização de estado (favoritos)
+- Responsividade com CSS
+
+---
+
 
 https://rafaelssant021.github.io/project-search-films/
