@@ -1,7 +1,16 @@
+@font-face {
+    font-family: 'newyork' ;
+    src: url(fonts/NewYork\ PERSONAL\ USE.otf) format('opentype');
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 body{
@@ -16,16 +25,18 @@ body{
 
 .topo{
     padding: 30px 20px;
-
     position: sticky;
     top: 0;
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
     z-index: 10;
 }
 
 .topo h1{
-    font-size: 28px;
-    margin-bottom: 15px;
+    font-family: "newyork";
+    font-size: 37px;
+    margin-bottom: 20px;
     letter-spacing: 1px;
 }
 
@@ -40,43 +51,50 @@ body{
     padding: 12px 15px;
     width: 260px;
     border-radius: 10px;
-    background: #000000;
-    border: 1px solid #333;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
     color: white;
     outline: none;
-    transition: 0.2s;
+    transition: all 0.2s ease;
 }
 
 .busca input:focus{
     border-color: #e50914;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
 }
 
 .busca button{
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 12px 18px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     font-weight: bold;
     margin: 3px 5px;
-    background: #e50914;
+    background: linear-gradient(135deg, #e50914, #b20710);
     color: white;
-    transition: transform 0.15s ease, background 0.2s;
+    transition: all 0.2s ease;
 }
 
 .busca button:hover{
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(229,9,20,0.4);
     background: #ff1f2a;
 }
 
+.busca button:active{
+    transform: scale(0.96);
+}
+
 .busca .secundario{
-    background: #000000;
-    border: 1px solid #333;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.15);
     color: #ddd;
 }
 
 .busca .secundario:hover{
-    background: #3a3a3a;
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
 }
 
 .busca input::placeholder{
@@ -113,12 +131,12 @@ body{
 }
 
 .filme{
-    background: #000000;
+    background: #0f0f0f;
     width: 200px;
-    border-radius: 12px;
-    border: 1px solid #333;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.5);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     cursor: pointer;
     position: relative;
 }
@@ -138,7 +156,13 @@ body{
 
 .filme:hover{
     transform: scale(1.07);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
+
+.filme:active{
+    transform: scale(0.97);
+}
+
 
 .filme img{
     width: 100%;
@@ -173,7 +197,8 @@ body{
 }
 
 .modal-content{
-    background: #0e0e0e;
+    background: linear-gradient(180deg, #111, #0a0a0a);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 12px;
     width: 400px;
@@ -212,11 +237,11 @@ body{
     max-height: 120px;
 }
 
-.modal-content::-webkit-scrollbar{
+::-webkit-scrollbar{
     width: 5px;
 }
 
-.modal-content::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     background: #888;
     border-radius: 10px;
 }
@@ -259,10 +284,15 @@ body{
     .filme p{
         font-size: 12px;
     }
+
+    .modal{
+        padding: 20px;
+    }
     .modal-content{
-    width: 90%;
-    max-height: 85vh;
+    width: 80%;
+    max-height: 75vh;
     padding: 15px;
+    border-radius: 16px;
     }
 }
 

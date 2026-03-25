@@ -9,6 +9,8 @@ async function buscarFilmes(novaBusca = true){
         return;
     }
 
+    document.getElementById("filmes").innerHTML = "<p>Carregando...</p>";
+
     if(novaBusca){
         paginaAtual = 1;
     }
@@ -34,7 +36,11 @@ function mostrarFilmes(filmes){
         card.addEventListener("click", () => abrirModal(filme));
 
         const img = document.createElement("img");
-        img.src = `https://image.tmdb.org/t/p/w500${filme.poster_path}`;
+        img.src = filme.poster_path
+            ? `https://image.tmdb.org/t/p/w500${filme.poster_path}`
+            : "https://via.placeholder.com/500x750?text=Sem+Imagem";
+
+        img.loading = "lazy";
 
         const titulo = document.createElement("h3");
         titulo.textContent = filme.title;
@@ -157,3 +163,9 @@ window.onclick = function(event) {
         document.body.style.overflow = "auto";
     }
 }
+
+document.getElementById("search").addEventListener("keypress", function(e){
+    if (e.key === "Enter") {
+        buscarFilmes();
+    }
+});
