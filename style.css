@@ -1,0 +1,254 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient( circle at top, #0f0f0f, #340404);
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+}
+
+.topo{
+    padding: 30px 20px;
+    background: linear-gradient(to bottom, #0f0f0f, transparent);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.topo h1{
+    font-size: 28px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.busca{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.busca input{
+    padding: 12px 15px;
+    width: 260px;
+    border-radius: 10px;
+    background: #1f1f1f;
+    border: 1px solid #333;
+    color: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+.busca input:focus{
+    border-color: #e50914;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+}
+
+.busca button{
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #e50914;
+    color: white;
+    transition: 0.2s;
+}
+
+.busca button:hover{
+    transform: translateY(-2px);
+    background: #ff1f2a;
+}
+
+.busca .secundario{
+    background: #2a2a2a;
+    color: #ddd;
+}
+
+.busca .secundario:hover{
+    background: #3a3a3a;
+}
+
+input::placeholder{
+    color: #888;
+}
+
+button{
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-weight: bold;
+    transition: transform 0.15s ease, background 0.2s;
+}
+
+#filmes{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filme{
+    background: #111;
+    width: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.filme::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.filme:hover::after{
+    opacity: 1;
+}
+
+.filme:hover{
+    transform: scale(1.07);
+}
+
+.filme img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.filme h3{
+    font-size: 15px;
+    margin: 10px;
+}
+
+.filme p{
+    font-size: 13px;
+    margin: 0 10px 10px;
+    color: #bbb;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+.modal-content{
+    background: #111;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    max-height: 90vh;
+    color: white;
+    position: relative;
+    animation: aparecer 0.25s ease;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.modal-content h2{
+    margin: 10px 0;
+}
+
+.modal-content p{
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.fechar{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content img{
+    width: 100%;
+    border-radius: 8px;
+}
+
+.sinopse{
+    max-height: 120px;
+}
+
+.modal-content::-webkit-scrollbar{
+    width: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 10px;
+}
+
+@keyframes aparecer{
+    from{
+        transform: translateY(40px) scale(0.95);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px){
+    .topo{
+        padding: 20px 10px;
+    }
+    .topo h1{
+        font-size: 20px;
+    }
+    .busca{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .busca input,
+    .busca button{
+        width: 100%;
+    }
+    .filme img{
+        height: 220px;
+    }
+
+    .filme h3{
+        font-size: 14px;
+    }
+
+    .filme p{
+        font-size: 12px;
+    }
+    .modal-content{
+    width: 90%;
+    max-height: 85vh;
+    padding: 15px;
+    }
+}

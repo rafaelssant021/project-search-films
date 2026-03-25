@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Films</title>
+    <title>Buscador de filmes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="topo">
+        <h1>Buscador de filmes</h1>
+
+        <div class="busca">
+            <input type="text" id="search" placeholder="Digite um filmes...">
+            <button onclick="buscarFilmes()">Buscar</button>
+            <button onclick="verFavoritos()" class="secundario">Filmes Favoritados</button>
+        </div>
+    </div>
+
+    <div id="filmes"></div>
+
+    <div id="paginacao" style="display:none;">
+        <button onclick="paginaAnterior()">Anterior</button>
+        <button onclick="proximaPagina()">Próxima</button>
+    </div>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <div id="modal-detalhes"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
