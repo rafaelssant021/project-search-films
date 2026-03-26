@@ -46,13 +46,24 @@ function mostrarFilmes(filmes){
         titulo.textContent = filme.title;
 
         const nota = document.createElement("p");
-        nota.textContent = `⭐ ${filme.vote_average}`;
+        nota.textContent = `⭐ ${filme.vote_average.toFixed(1)}`;
+
+        const ano = document.createElement("p");
+        ano.textContent = filme.release_date
+            ? filme.release_date.split("-")[0]
+            : "N/A";
 
         card.appendChild(img);
         card.appendChild(titulo);
         card.appendChild(nota);
+        card.appendChild(ano);
         container.appendChild(card);
     });
+
+    if(filmes.length === 0){
+        container.innerHTML = "<p>Nenhum filme foi encontrado</p>";
+        return;
+    }
 
     paginacao.style.display = filmes.length > 0 ? "block" : "none";
 }
@@ -169,3 +180,12 @@ document.getElementById("search").addEventListener("keypress", function(e){
         buscarFilmes();
     }
 });
+
+let timeout;
+
+document.getElementById("search").addEventListener("input", () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        buscarFilmes();
+    }, 500);
+})
