@@ -247,6 +247,22 @@ body{
     border-radius: 10px;
 }
 
+footer{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+i{
+    color: #ffffff;
+}
+
+i:hover{
+    color: #ddd;
+}
+
 @keyframes aparecer{
     from{
         transform: translateY(40px) scale(0.95);
