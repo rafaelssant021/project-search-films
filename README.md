@@ -1,4 +1,4 @@
-# Encontre seu Filme
+# CineScope
 
 Aplicação web para buscar filmes em tempo real utilizando uma API externa.  
 O projeto permite visualizar informações detalhadas dos filmes, incluindo sinopse, avaliação e imagem, com uma interface moderna e interativa.
