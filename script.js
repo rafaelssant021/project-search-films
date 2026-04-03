@@ -129,17 +129,79 @@ function paginaAnterior(){
     }
 }
 
-function abrirModal(filme){
+async function abrirModal(filme){
     const modal = document.getElementById("modal");
     const detalhes = document.getElementById("modal-detalhes");
 
     const isFavorito = favoritado(filme.id);
 
+    const [respostaCreditos, respostaVideos] = await Promise.all ([
+        fetch(`https://api.themoviedb.org/3/movie/${filme.id}/credits?api_key=${apiKey}&language=pt-BR`),
+        fetch(`https://api.themoviedb.org/3/movie/${filme.id}/videos?api_key=${apiKey}&language=pt-BR`)
+    ]);
+
+    const creditos = await respostaCreditos.json();
+    const videos = await respostaVideos.json();
+
+    const trailer = videos.results.find(v => v.type === "Trailer" && v.site === "YouTube") || videos.results.find(v => v.site === "YouTube");
+
+    const trailerHtml = trailer ? `
+    <div class="trailer">
+        <h3 class="elenco-titulo">Trailer</h3>
+        <div class="trailer-wrapper">
+            <iframe
+                src="https://www.youtube.com/embed/${trailer.key}"
+                allowfullscreen
+                allow="autoplay; encrypted-media"
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    ` : `<p class="sem-trailer">Nenhum trailer disponível</p>`;
+
+    const diretor = creditos.crew.find(pessoa => pessoa.job === "Director");
+
+    const diretorHtml = diretor ? `
+    <div class="diretor">
+        <h3 class="elenco-titulo">Diretor</h3>
+        <div class="ator">
+            <img src="${diretor.profile_path
+                ? `https://image.tmdb.org/t/p/w185${diretor.profile_path}`
+                : 'https://via.placeholder.com/80x80?text=?'}"
+                alt="${diretor.name}">
+            <div class="ator-info">
+                <span class="ator-nome">${diretor.name}</span>
+                <span class="ator-personagem">Diretor</span>
+            </div>
+        </div>
+    </div>
+` : "";
+
+    const elenco = creditos.cast.slice(0,5);
+    const atoresHtml = elenco.map(ator => `
+        <div class="ator">
+            <img src="${ator.profile_path
+                ? `https://image.tmdb.org/t/p/w185${ator.profile_path}`
+                : 'https://via.placeholder.com/80x80?text=?'}" 
+                alt="${ator.name}">
+            <div class="ator-info">
+                <span class="ator-nome">${ator.name}</span>
+                <span class="ator-personagem">${ator.character}</span>
+            </div>
+        </div>
+    `).join("");
+    
     detalhes.innerHTML = `
     <img src="https://image.tmdb.org/t/p/w500${filme.poster_path}" style="width:100%">
     <h2>${filme.title}</h2>
     <p>⭐ ${filme.vote_average}</p>
     <p>${filme.overview}</p>
+    ${diretorHtml}
+    <div class="elenco">
+        <h3 class="elenco-titulo">Elenco Principal</h3>
+        ${atoresHtml}
+    </div>
+    ${trailerHtml}
     <button id="btn-favorito"
             style="
                 background: ${isFavorito ? 'rgb(107, 9, 9)' : '#e50914'};
