@@ -12,10 +12,10 @@
         <h1>CineScope</h1>
 
         <div class="busca">
-            <input type="text" id="search" placeholder="Digite um filme...">
-            <button onclick="buscarFilmes()">Buscar</button>
+            <div class="input-wrapper">
+                <input type="text" id="search" placeholder="Buscar filme...">
+            </div>
             <button onclick="verFavoritos()" class="secundario">Filmes Favoritados</button>
-            
         </div>
     </div>
 
@@ -34,9 +34,32 @@
         </div>
     </div>
 
-    <footer>Desenvolvido por Rafael Santos
-        <a href="www.linkedin.com/in/rafael-santos-silva-1ba32538a" target="_blank" rel="nofollow"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://github.com/rafaelssant021"><i class="fa-brands fa-github"></i></a>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <span class="footer-logo">CineScope</span>
+                <p class="footer-sub">Desenvolvido po Rafael Santos</p>
+            </div>
+            <div class="footer-col">
+                <p class="footer-links-titulo">Redes</p>
+                <div class="footer-links">
+                    <a href="www.linkedin.com/in/rafael-santos-silva-1ba32538a" target="_blank" rel="nofollow">
+                        <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/rafaelssant021" target="_blank" rel="nofollow">
+                        <i class="fa-brands fa-github"></i> Github
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <p class="footer-links-titulo">Dados</p>
+                <p class="footer-sub">Fornecido por <a href="https://www.themoviedb.org/" target="_blank" class="tmdb-link">TMDB</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 CineScope</span>
+        </div>
     </footer>
 
     <script src="script.js"></script>
