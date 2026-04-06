@@ -16,8 +16,8 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 ---
 
 ## Interface
-- Cards dinâmicos para cada filme
-- Modal para exibir detalhes completos
+- Cards dinâmicos para cada filme e elenco
+- Modal para exibir detalhes completos do elenco e tambem dos filmes
 - Sistema de favoritos separado
 - Scroll customizado
 - Design moderno e organizado
