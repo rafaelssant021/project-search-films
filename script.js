@@ -256,7 +256,7 @@ async function abrirModalPessoa(id){
 
     const biografia = pessoa.biography
         ? `<p class="bio">${pessoa.biography}</p>`
-        : `<p class="sem-trailer">Biografia não disponovel.</p>`;
+        : `<p class="sem-trailer">Biografia não disponivel.</p>`;
 
     detalhes.innerHTML = `
         <div class="pessoa-topo">
