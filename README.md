@@ -9,7 +9,7 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 
 - Busca de filmes por nome  
 - Exibição de pôster, título e avaliação  
-- Modal com detalhes e sinopse do filme  
+- Modal com detalhes, sinopse do filme, diretor, elenco principal e trailer
 - Sistema de favoritos  
 - Layout responsivo (mobile e desktop)  
 
