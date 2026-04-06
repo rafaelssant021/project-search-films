@@ -164,7 +164,7 @@ async function abrirModal(filme){
     const diretorHtml = diretor ? `
     <div class="diretor">
         <h3 class="elenco-titulo">Diretor</h3>
-        <div class="ator">
+        <div class="ator" onclick="abrirModalPessoa(${diretor.id})" style="cursor: pointer;">
             <img src="${diretor.profile_path
                 ? `https://image.tmdb.org/t/p/w185${diretor.profile_path}`
                 : 'https://via.placeholder.com/80x80?text=?'}"
@@ -179,7 +179,7 @@ async function abrirModal(filme){
 
     const elenco = creditos.cast.slice(0,5);
     const atoresHtml = elenco.map(ator => `
-        <div class="ator">
+        <div class="ator" onclick="abrirModalPessoa(${ator.id})" style="cursor: pointer;">
             <img src="${ator.profile_path
                 ? `https://image.tmdb.org/t/p/w185${ator.profile_path}`
                 : 'https://via.placeholder.com/80x80?text=?'}" 
@@ -222,6 +222,77 @@ async function abrirModal(filme){
     modal.style.display = "flex";
 
     document.body.style.overflow = "hidden";
+}
+
+async function abrirModalPessoa(id){
+    const modal = document.getElementById("modal");
+    const detalhes = document.getElementById("modal-detalhes");
+
+    detalhes.innerHTML = "<p style='text-align:center; padding: 20px;'>Carregando...</p>";
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    const [respostaPessoa, respostaFilmes] = await Promise.all([
+        fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&language=pt-BR`),
+        fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${apiKey}&language=pt-BR`)
+    ]);
+
+    const pessoa = await respostaPessoa.json();
+    const creditos = await respostaFilmes.json();
+
+    const filmes = (creditos.cast || [])
+        .sort((a,b) => b.popularity - a.popularity)
+        .slice(0,8);
+
+    const filmesHtml = filmes.map(filme => `
+        <div class="filme-mini" onclick="abrirModalPorId(${filme.id})">
+            <img src="${filme.poster_path
+                ? `https://image.tmdb.org/t/p/w185${filme.poster_path}`
+                : 'https://via.placeholder.com/80x120?text=?'}"
+                alt="${filme.title}">
+            <span>${filme.title}</span>
+        </div>
+        `).join("");
+
+    const biografia = pessoa.biography
+        ? `<p class="bio">${pessoa.biography}</p>`
+        : `<p class="sem-trailer">Biografia não disponovel.</p>`;
+
+    detalhes.innerHTML = `
+        <div class="pessoa-topo">
+            <img class="pessoa-foto" 
+                src="${pessoa.profile_path
+                    ? `https://image.tmdb.org/t/p/w185${pessoa.profile_path}`
+                    : 'https://via.placeholder.com/100x100?text=?'}"
+                alt="${pessoa.name}">
+            <div class="pessoa-info">
+                <h2>${pessoa.name}</h2>
+                <p class="pessoa-detalhe">${pessoa.birthday
+                    ? new Date(pessoa.birthday).toLocaleDateString("pt-BR")
+                    : "N/A"}</p>
+                <p class="pessoa-detalhe">${pessoa.place_of_birth || "N/A"}</p>
+                <p class="pessoa-detalhe">${pessoa.known_for_department || "N/A"}</p>
+            </div>
+        </div>
+
+        <div class="bio-secao">
+            <h3 class="elenco-titulo">Biografia</h3>
+            ${biografia}
+        </div>
+
+        <div class="filmes-pessoa">
+            <h3 class="elenco-titulo">Filmes</h3>
+            <div class="filmes-mini-grid">
+                ${filmesHtml}
+            </div>
+        </div>
+    `;
+}
+
+async function abrirModalPorId(id){
+    const resposta = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=pt-BR`);
+    const filme = await resposta.json();
+    abrirModal(filme);
 }
 
 function fecharModal() {
