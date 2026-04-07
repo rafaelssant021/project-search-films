@@ -55,7 +55,7 @@ function mostrarFilmes(filmes){
         titulo.textContent = filme.title;
 
         const nota = document.createElement("p");
-        nota.textContent = `⭐ ${filme.vote_average.toFixed(1)}`;
+        nota.innerHTML = `<i class="fa-solid fa-star" style="color: rgb(255, 214, 67);"></i> ${filme.vote_average.toFixed(1)}`;
 
         const ano = document.createElement("p");
         ano.textContent = filme.release_date
@@ -229,7 +229,7 @@ async function abrirModal(filme){
 
         <button id="btn-favorito"
             style="background: ${isFavorito ? 'rgb(107,9,9)' : '#e50914'}; color: white; margin-top: 10px;">
-            ${isFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+            ${isFavorito ? '<i class="fa-solid fa-heart-circle-xmark" style="color: rgb(255, 255, 255);"></i> Remover dos Favoritos' : '<i class="fa-solid fa-heart-circle-plus" style="color: rgb(255, 255, 255);"></i> Adicionar aos Favoritos'}
         </button>
     </div>
         `;

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='100' fill='%23eb1010'>C</text></svg>">
     <title>CineScope</title>
     <script src="https://kit.fontawesome.com/b6f52a2dc6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -13,9 +14,10 @@
 
         <div class="busca">
             <div class="input-wrapper">
+                <span class="lupa"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <input type="text" id="search" placeholder="Buscar filme...">
             </div>
-            <button onclick="verFavoritos()" class="secundario">Filmes Favoritados</button>
+            <button onclick="verFavoritos()" class="secundario">Filmes Favoritados <i class="fa-solid fa-heart" style="color: rgb(147, 19, 19);"></i></button>
         </div>
     </div>
 
