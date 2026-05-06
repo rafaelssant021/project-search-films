@@ -1,0 +1,389 @@
+@font-face {
+    font-family: 'newyork' ;
+    src: url(fonts/NewYork\ PERSONAL\ USE.otf) format('opentype');
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --cs-bg: #000000;
+    --cs-surface: #141420;
+    --cs-card: #000000;
+    --cs-border: rgba(255, 255, 255, 0.08);
+    --cs-accent: #e50914;
+    --cs-text: #ffffff;
+    --cs-muted: #888899;
+    --cs-gold: #f5c518;
+    --cs-radius: 12px;
+}
+
+body{
+    font-family: 'Outfit', sans-serif;
+    background: var(--cs-bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    position: relative;
+    text-align: center;
+}
+
+.cs-bg-glow{
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(229, 9, 20, 0.13) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cs-wrap > *{
+    position: relative;
+    z-index: 1;
+}
+
+.cs-logo{
+    font-family: "newyork";
+    font-size: 2.6rem;
+    color: white;
+    margin-bottom: 0.3rem;
+}
+
+.cs-subtitle{
+    font-size: 13px;
+    color: var(--cs-muted);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+.cs-profiles-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.cs-profle-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.cs-avatar{
+    width: 104px;
+    height: 104px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+}
+
+.cs-profile-card:hover .cs-avatar, 
+.cs-profile-card.manage-mode .cs-avatar{
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.06);
+}
+
+.cs-profile-name{
+    font-size: 13px;
+    color: var(--cs-muted);
+    font-weight: 400;
+    max-width: 104px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0,2s;
+}
+
+.cs-profile-card:hover .cs-profile-name{
+    color: var(--cs-text);
+}
+
+.cs-edit-icon{
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-profile-card.manage-mode .cs-edit-icon{
+    display: flex;
+}
+
+.cs-edit-icon svg{
+    width: 28px;
+    height: 28px;
+    stroke: #fff;
+    stroke-width: 1.8;
+    fill: none;
+}
+
+.cs-add-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.cs-add-avatar{
+    width: 104px;
+    height: 104px;
+    border-radius: 10px;
+    border: 2px dashed rgba(255,255,255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+
+.cs-add.btn:hover .cs-add-avatar{
+    border-color: var(--cs-text);
+    background: rgba(255,255,255,0.04);
+    transform: scale(1.06);
+}
+
+.cs-add-avatar svg{
+    width: 34px;
+    height: 34px;
+    stroke: rgba(255,255,255,0.25);
+    stroke-width: 1.5;
+    fill: none;
+    transition: stroke 0.2s;
+}
+
+.cs-add-btn:hover .cs-add-avatar svg{
+    stroke: var(--cs-text);
+}
+
+.cs-add-name{
+    font-size: 13px;
+    color: var(--cs-muted);
+}
+
+.cs-limit-msg{
+    font-size: 12px;
+    color: var(--cs-gold);
+    letter-spacing: 0.5px;
+    margin-bottom: 1.2rem;
+}
+
+.cs-manage-btn{
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cs-muted);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 9px 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.cs-manage-btn:hover{
+    color: var(--cs-text);
+    border-color: rgba(255,255,255,0.5);
+}
+
+.cs-modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.cs-modal-overlay.active{
+    display: flex;
+}
+
+.cs-modal{
+    background: var(--cs-card);
+    border: 1px solid var(--cs-border);
+    border-radius: var(--cs-radius);
+    padding: 2rem;
+    width: 340px;
+    max-width: 92vw;
+}
+
+.cs-modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--cs-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.cs-modal label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cs-muted);
+    margin-bottom: 6px;
+}
+
+.cs-modal input[type="text"] {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--cs-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--cs-text);
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 1.3rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.cs-modal input[type="text"]:focus{
+    border-color: var(--cs-accent);
+}
+
+.cs-emoji-pick{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.3rem;
+}
+
+.cs-emoji-opt{
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.cs-emoji-opt:hover,
+.cs-emoji-opt.selected {
+    border-color: var(--cs-accent);
+    background: rgba(229, 9, 20, 0.15);
+}
+
+.cs-color-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.cs-color-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.cs-color-dot:hover,
+.cs-color-dot.selected {
+    transform: scale(1.2);
+    border-color: #fff;
+}
+
+.cs-modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cs-btn-primary {
+    flex: 1;
+    background: var(--cs-accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cs-btn-primary:hover {
+    background: #c40812;
+}
+
+.cs-btn-secondary {
+    flex: 1;
+    background: transparent;
+    color: var(--cs-muted);
+    border: 1px solid var(--cs-border);
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.cs-btn-secondary:hover {
+    color: var(--cs-text);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cs-btn-danger {
+    background: transparent;
+    color: #e55;
+    border: 1px solid rgba(220, 60, 60, 0.3);
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.cs-btn-danger:hover {
+    background: rgba(220, 60, 60, 0.12);
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .cs-avatar,
+    .cs-add-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cs-profiles-grid {
+        gap: 16px;
+    }
+}

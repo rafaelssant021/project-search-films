@@ -19,6 +19,14 @@
             </div>
             <button onclick="verFavoritos()" class="secundario">Filmes Favoritados <i class="fa-solid fa-heart" style="color: rgb(147, 19, 19);"></i></button>
         </div>
+
+        <div class="profile-active" id="profileActive">
+            <div class="profile-dropdown" id="profileDropdown">
+                <a onclick="window.location.href='profiles.html'">
+                    <i class="fa-solid fa-circle-user"></i> Mudar Perfil
+                </a>
+            </div>
+        </div>
     </div>
 
     <div id="filmes"></div>
@@ -63,7 +71,8 @@
             <span>© 2026 CineScope</span>
         </div>
     </footer>
-
+    
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

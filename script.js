@@ -1,3 +1,36 @@
+function getFavoritosKey(){
+    const profile = JSON.parse(localStorage.getItem('cs_active_profile') || 'null');
+    return profile ? `favoritos_${profile.id}` : 'favoritos';
+}
+
+const profile = JSON.parse(localStorage.getItem('cs_active_profile') ||  'null');
+const profileActive = document.getElementById('profileActive');
+const profileDropdown = document.getElementById('profileDropdown');
+
+if(profile && profileActive){
+    profileActive.innerHTML = `
+        <div class="perfil-avatar" style="background: ${profile.color}22; border-color: ${profile.color}55;">
+            <span>${profile.emoji}</span>
+        </div>
+        <span class="perfil-nome">${profile.name}</span>
+        <div class="profile-dropdown" id="profileDropdown">
+            <a onclick="window.location.href='profiles.html'">
+                <i class="fa-solid fa-circle-user"></i> Mudar perfil
+            </a>
+        </div>
+    `;
+
+    profileActive.addEventListener('click', () => {
+        document.getElementById('profileDropdown').classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!profileActive.contains(e.target)){
+            document.getElementById('profileDropdown')?.classList.remove('open');
+        }
+    });
+}
+
 const apiKey = "f8ae092c693d8558e7c59f7435e00315";
 let paginaAtual = 1;
 
@@ -73,7 +106,7 @@ function mostrarFilmes(filmes){
 }
 
 async function verFavoritos(){
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const favoritos = JSON.parse(localStorage.getItem(getFavoritosKey())) || [];
 
     if(favoritos.length === 0){
         alert ("Você não possui filmes favoritados");
@@ -95,12 +128,13 @@ async function verFavoritos(){
 }
 
 function favoritado(id){
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const favoritos = JSON.parse(localStorage.getItem(getFavoritosKey())) || [];
     return favoritos.includes(id);
 }
 
 function toggleFavorito(id){
-    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const key = getFavoritosKey();
+    let favoritos = JSON.parse(localStorage.getItem(key)) || [];
 
     if(favoritos.includes(id)){
         favoritos = favoritos.filter(f => f !== id);
@@ -108,7 +142,7 @@ function toggleFavorito(id){
         favoritos.push(id);
     }
 
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+    localStorage.setItem(key, JSON.stringify(favoritos));
 }
 
 function proximaPagina(){
@@ -350,11 +384,13 @@ document.getElementById("search").addEventListener("input", () => {
 function mostrarBoasVindas(){
     const container = document.getElementById("filmes");
     const paginacao = document.getElementById("paginacao");
+    const profile = JSON.parse(localStorage.getItem('cs_active_profile') || 'null');
+    const nome = profile ? ` ${profile.name}` : '';
 
     paginacao.style.display = "none";
     container.innerHTML = `
     <div class="boas-vindas">
-            <h2>O que você vai assistir hoje?</h2>
+            <h2>Olá${nome}, o que você vai assistir hoje?</h2>
             <p>Busque por qualquer filme e descubra detalhes, elenco e trailers</p>
         </div>
         `;

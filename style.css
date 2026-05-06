@@ -662,6 +662,70 @@ i:hover{
     color: #ddd;
 }
 
+.profile-active{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: fit-content;
+}
+
+.profile-active:hover{
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.profile-dropdown{
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: rgba(10,10,10,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 6px 0;
+    min-width: 140px;
+    display: none;
+    z-index: 20;
+}
+
+.profile-dropdown.open{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    color: #ccc;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+}
+
+.profile-dropdown a:hover{
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+}
+
+.perfil-avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.perfil-nome {
+    font-size: 13px;
+    color: #e8e8f0;
+    font-weight: 500;
+}
+
 @keyframes aparecer{
     from{
         transform: translateY(40px) scale(0.95);
