@@ -51,8 +51,3 @@ A aplicação permite visualizar informações detalhadas dos filmes, incluindo 
 - Separação de contexto por usuário
 - Controle de fluxo entre páginas (profiles → home)
 - Manipulação mais complexa de DOM (modais + múltiplos estados)
-
----
-
-
-https://rafaelssant021.github.io/project-search-films/
