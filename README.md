@@ -1,7 +1,8 @@
 # CineScope
 
-Aplicação web para buscar filmes em tempo real utilizando uma API externa.  
-O projeto permite visualizar informações detalhadas dos filmes, incluindo sinopse, avaliação e imagem, com uma interface moderna e interativa.
+Aplicação web para busca de filmes em tempo real utilizando a API do TMDB, com suporte a múltiplos perfis e personalização de experiência por usuário.
+
+A aplicação permite visualizar informações detalhadas dos filmes, incluindo sinopse, avaliação, elenco, diretor e trailer, além de manter listas de favoritos separadas por perfil.
 
 ---
 
@@ -11,7 +12,12 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 - Exibição de pôster, título e avaliação  
 - Modal com detalhes, sinopse do filme, diretor, elenco principal e trailer
 - Sistema de favoritos  
-- Layout responsivo (mobile e desktop)  
+- Layout responsivo (mobile e desktop)
+- Sistema de múltiplos perfis
+- Persistência de perfil ativo
+- Favoritos isolados por perfil
+- Tela inicial de seleção de usuário
+- Gerenciamento de perfis (criar, editar, excluir) 
 
 ---
 
@@ -40,6 +46,11 @@ O projeto permite visualizar informações detalhadas dos filmes, incluindo sino
 - Criação de modais dinâmicos
 - Organização de estado (favoritos)
 - Responsividade com CSS
+- Gerenciamento de estado no frontend
+- Uso de localStorage com chave dinâmica
+- Separação de contexto por usuário
+- Controle de fluxo entre páginas (profiles → home)
+- Manipulação mais complexa de DOM (modais + múltiplos estados)
 
 ---
 
