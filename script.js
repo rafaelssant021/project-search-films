@@ -14,13 +14,18 @@ if(profile && profileActive){
         </div>
         <span class="perfil-nome">${profile.name}</span>
         <div class="profile-dropdown" id="profileDropdown">
-            <a onclick="window.location.href='profiles.html'">
+            <a href="index.html" id="changeProfileLink">
                 <i class="fa-solid fa-circle-user"></i> Mudar perfil
             </a>
         </div>
     `;
 
-    profileActive.addEventListener('click', () => {
+    profileActive.addEventListener('click', (e) => {
+        if (e.target.closest('#changeProfileLink')) {
+            window.location.href = 'index.html';
+            return;
+        }
+
         document.getElementById('profileDropdown').classList.toggle('open');
     });
 

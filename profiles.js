@@ -79,7 +79,7 @@ function render(){
 
 function selectProfile(p){
     localStorage.setItem('cs_active_profile', JSON.stringify(p));
-    window.location.href = 'index.html';
+    window.location.href = 'home.html';
 }
 
 function openCreate(){
